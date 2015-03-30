@@ -1,4 +1,4 @@
-<?php namespace App\Events;
+<?php namespace SpotifyExample\Events;
 
 abstract class Event {
 
