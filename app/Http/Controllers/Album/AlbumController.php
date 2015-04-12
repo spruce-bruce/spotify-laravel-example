@@ -26,12 +26,22 @@ class AlbumController extends Controller
      */
     public function search(Request $request) {
         $query = $request->input('query');
-        $albums = '';
+
+        $data = [
+            'query' => $query,
+            'albums' => null,
+            'next' => null,
+            'previous' => null,
+        ];
 
         if ($query) {
             $albums = $this->spotifyService->search($query);
+
+            $data['albums'] = $albums['items'];
+            $data['next'] = $albums['next'];
+            $data['prev'] = $albums['previous'];
         }
 
-        return view('album/search', ['query' => $query, 'albums' => $albums]);
+        return view('album/search', $data);
     }
 }

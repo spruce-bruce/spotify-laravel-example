@@ -8,6 +8,12 @@
         <button>Search</button>
     </form>
 
-    {{ $albums }}
+
+    @foreach ($albums as $album)
+        <div class="album">
+            <img src="{{ $album['images'][1]['url'] }}" />
+            Name : {{ $album['name'] }}
+        </div>
+    @endforeach
 
 @endsection
