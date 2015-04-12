@@ -144,6 +144,7 @@ return [
 		'SpotifyExample\Providers\ConfigServiceProvider',
 		'SpotifyExample\Providers\EventServiceProvider',
 		'SpotifyExample\Providers\RouteServiceProvider',
+        'SpotifyExample\Providers\SpotifyServiceProvider',
 
 	],
 

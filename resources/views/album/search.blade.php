@@ -8,4 +8,6 @@
         <button>Search</button>
     </form>
 
+    {{ $albums }}
+
 @endsection
