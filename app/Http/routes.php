@@ -15,7 +15,7 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('albums', 'Album\AlbumController@getAlbums');
+Route::match(['GET', 'POST'], 'search', 'Album\AlbumController@search');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AlbumController extends Controller
 {
-    public function getAlbums(Request $request) {
-        die("HERE WE ARE");
+    public function search(Request $request) {
+        return view('album/search', ['query' => $request->input('query')]);
     }
 }
