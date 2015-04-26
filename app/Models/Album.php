@@ -65,15 +65,15 @@ class Album extends Model {
     public $timestamps = false;
 
     public function getSmallImageUrl() {
-        $this->getImageUrl(self::SMALL_SIZE);
-    }
-
-    public function getLargeImageUrl() {
-        $this->getImageUrl(self::LARGE_SIZE);
+        return $this->getImageUrl(self::SMALL_SIZE);
     }
 
     public function getMediumImageUrl() {
-        $this->getImageUrl(self::MEDIUM_SIZE);
+        return $this->getImageUrl(self::MEDIUM_SIZE);
+    }
+
+    public function getLargeImageUrl() {
+        return $this->getImageUrl(self::LARGE_SIZE);
     }
 
     private function getImageUrl($size) {
