@@ -5,6 +5,7 @@ namespace SpotifyExample\Http\Controllers\Album;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use SpotifyExample\Services\SpotifyService;
+use SpotifyExample\Services\AlbumService;
 
 class AlbumController extends Controller
 {
@@ -14,10 +15,20 @@ class AlbumController extends Controller
     private $spotifyService;
 
     /**
-     * @param SpotifyService $spotifyService
+     * @var AlbumService
      */
-    public function __construct(SpotifyService $spotifyService) {
+    private $albumService;
+
+    /**
+     * @param SpotifyService $spotifyService
+     * @param AlbumService $albumService
+     */
+    public function __construct(
+        SpotifyService $spotifyService,
+        AlbumService $albumService
+    ) {
         $this->spotifyService = $spotifyService;
+        $this->albumService = $albumService;
     }
 
     /**
@@ -27,20 +38,18 @@ class AlbumController extends Controller
     public function search(Request $request) {
         $query = $request->input('query');
 
+        if ($query) {
+            $spotifyAlbumResponse = $this->spotifyService->search($query);
+            $albums = $this->albumService->getAlbumsFromResponse($spotifyAlbumResponse);
+        }
+
+
         $data = [
             'query' => $query,
             'albums' => [],
             'next' => null,
             'previous' => null,
         ];
-
-        if ($query) {
-            $albums = $this->spotifyService->search($query);
-
-            $data['albums'] = $albums['items'];
-            $data['next'] = $albums['next'];
-            $data['prev'] = $albums['previous'];
-        }
 
         return view('album/search', $data);
     }
