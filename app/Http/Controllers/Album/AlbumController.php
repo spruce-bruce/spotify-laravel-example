@@ -40,8 +40,7 @@ class AlbumController extends Controller
         $albums = [];
 
         if ($query) {
-            $spotifyAlbumResponse = $this->spotifyService->search($query);
-            $albums = $this->albumService->getAlbumsFromResponse($spotifyAlbumResponse);
+            $albums = $this->albumService->search($query);
         }
 
         $data = [
@@ -52,5 +51,16 @@ class AlbumController extends Controller
         ];
 
         return view('album/search', $data);
+    }
+
+    /**
+     * Display the heck out of an album including its tracks
+     *
+     * @param $id
+     * @param Request $request
+     */
+    public function getAlbum($id, Request $request) {
+        var_dump($id);
+        die();
     }
 }
