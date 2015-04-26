@@ -23,6 +23,7 @@ class AlbumService {
         // If the model is either loaded from the database, or has been saved to the database since being
         // created the exists property will be true; Otherwise it will be false.
         if (!$album->exists) {
+            $album->name = $item['name'];
             $album->type = $item['type'];
             $album->album_type = $item['album_type'];
             $album->href = $item['href'];

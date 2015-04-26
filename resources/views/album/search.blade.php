@@ -11,9 +11,10 @@
 
     @foreach ($albums as $album)
         <div class="album">
-            <img src="{{ $album['images'][1]['url'] }}" />
-            Name : {{ $album['name'] }}
+            Name : {{ $album->name }} <br />
+            Id : {{ $album->id }}
         </div>
+        <br />
     @endforeach
 
 @endsection
