@@ -37,6 +37,7 @@ class AlbumController extends Controller
      */
     public function search(Request $request) {
         $query = $request->input('query');
+        $albums = [];
 
         if ($query) {
             $spotifyAlbumResponse = $this->spotifyService->search($query);
