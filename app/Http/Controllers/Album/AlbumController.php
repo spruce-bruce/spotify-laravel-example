@@ -45,9 +45,7 @@ class AlbumController extends Controller
 
         $data = [
             'query' => $query,
-            'albums' => $albums,
-            'next' => null,
-            'previous' => null,
+            'albums' => $albums
         ];
 
         return view('album/search', $data);

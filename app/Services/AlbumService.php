@@ -12,6 +12,9 @@ class AlbumService {
      */
     private $spotifyService;
 
+    /**
+     * @param SpotifyService $spotifyService
+     */
     public function __construct(SpotifyService $spotifyService) {
         $this->spotifyService = $spotifyService;
     }
@@ -24,20 +27,10 @@ class AlbumService {
      */
     public function search($query) {
         $spotifyAlbumSearchResponse = $this->spotifyService->search($query);
-        return $this->getAlbumsFromResponse($spotifyAlbumSearchResponse);
-    }
-
-    /**
-     * Get albums from the database if we have them, otherwise save them and return
-     * Album models
-     *
-     * @param $spotifyAlbumSearchResponse
-     * @return array
-     */
-    public function getAlbumsFromResponse($spotifyAlbumSearchResponse) {
         $albums = [];
+
         foreach ($spotifyAlbumSearchResponse['items'] as $item) {
-            $albums[] = $this->getAlbumForSpotifyItem($item);
+            $albums[] = $this->getAlbumForSpotifySearchItem($item);
         }
 
         return $albums;
@@ -50,7 +43,7 @@ class AlbumService {
      * @param $item
      * @return Album
      */
-    public function getAlbumForSpotifyItem($item) {
+    public function getAlbumForSpotifySearchItem($item) {
         //Album::firstOrCreate()
         $album = Album::firstOrNew(['id' => $item['id']]);
 
