@@ -64,10 +64,21 @@ class Album extends Model {
      */
     public $timestamps = false;
 
-    public function getMediumImageUrl()
-    {
+    public function getSmallImageUrl() {
+        $this->getImageUrl(self::SMALL_SIZE);
+    }
+
+    public function getLargeImageUrl() {
+        $this->getImageUrl(self::LARGE_SIZE);
+    }
+
+    public function getMediumImageUrl() {
+        $this->getImageUrl(self::MEDIUM_SIZE);
+    }
+
+    private function getImageUrl($size) {
         foreach ($this->images as $image) {
-            if ($image->width === self::MEDIUM_SIZE) return $image->url;
+            if ($image->width === $size) return $image->url;
         }
 
         return false;
