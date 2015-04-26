@@ -11,6 +11,7 @@
 
     @foreach ($albums as $album)
         <div class="album">
+            <img src="{{ $album->getMediumImageUrl() }}" /> <br />
             Name : {{ $album->name }} <br />
             Id : {{ $album->id }}
         </div>

@@ -44,7 +44,6 @@ class AlbumController extends Controller
             $albums = $this->albumService->getAlbumsFromResponse($spotifyAlbumResponse);
         }
 
-
         $data = [
             'query' => $query,
             'albums' => $albums,

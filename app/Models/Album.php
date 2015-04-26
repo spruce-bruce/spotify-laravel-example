@@ -5,6 +5,9 @@ namespace SpotifyExample\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Album extends Model {
+    const SMALL_SIZE = 64;
+    const MEDIUM_SIZE = 300;
+    const LARGE_SIZE = 640;
 
     /**
      * The "snake case", plural name of the class will be used as the table
@@ -61,6 +64,14 @@ class Album extends Model {
      */
     public $timestamps = false;
 
+    public function getMediumImageUrl()
+    {
+        foreach ($this->images as $image) {
+            if ($image->width === self::MEDIUM_SIZE) return $image->url;
+        }
+
+        return false;
+    }
 
     /**
      * Defining that an album can have many images
