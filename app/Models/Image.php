@@ -4,7 +4,7 @@ namespace SpotifyExample\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Album extends Model {
+class Image extends Model {
 
     /**
      * The "snake case", plural name of the class will be used as the table
@@ -12,7 +12,7 @@ class Album extends Model {
      *
      * @var string
      */
-    protected $table = 'albums';
+    protected $table = 'images';
 
     /**
      * Eloquent assumes you have a primary key called 'id'. Override the default here.
@@ -31,11 +31,10 @@ class Album extends Model {
      * @var array
      */
     protected $fillable = [
-        'id',
-        'type',
-        'album_type',
-        'href',
-        'uri'
+        'album_id',
+        'url',
+        'width',
+        'height'
     ];
 
     /**
@@ -51,7 +50,7 @@ class Album extends Model {
      *
      * @var bool
      */
-    public $incrementing = false;
+    public $incrementing = true;
 
     /**
      * By default, Eloquent will maintain the created_at and updated_at columns
@@ -59,22 +58,15 @@ class Album extends Model {
      *
      * @var bool
      */
-    public $timestamps = false;
-
+    public $timestamps = true;
 
     /**
-     * Defining that an album can have many images
+     * We get to define that an image belongs to an album!
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function images()
+    public function album()
     {
-        /*
-         * Eloquent assumes the foreign key of the relationship based on the model name (album_id in this case).
-         * If you wish to override this convention, you may pass a second argument to the hasOne method.
-         * Furthermore, you may pass a third argument to the method to specify which local column that
-         * should be used for the association
-         */
-        return $this->hasMany('SpotifyExample\Models\Image');
+        return $this->belongsTo('SpotifyExample\Models\Album');
     }
 }

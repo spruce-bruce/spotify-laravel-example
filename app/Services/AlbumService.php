@@ -3,6 +3,7 @@
 namespace SpotifyExample\Services;
 
 use SpotifyExample\Models\Album;
+use SpotifyExample\Models\Image;
 
 class AlbumService {
 
@@ -30,6 +31,18 @@ class AlbumService {
             $album->uri = $item['uri'];
 
             $album->save();
+
+            $images = [];
+            foreach ($item['images'] as $image) {
+                $images[] = new Image([
+                    'album_id' => $album->id,
+                    'url' => $image['url'],
+                    'width' => $image['width'],
+                    'height' => $image['height']
+                ]);
+            }
+
+            $album->images()->saveMany($images);
         }
 
         return $album;
