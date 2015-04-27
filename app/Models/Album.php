@@ -107,6 +107,6 @@ class Album extends Model {
      */
     public function tracks()
     {
-        return $this->hasMany('SpotifyExample\Models\Track');
+        return $this->hasMany('SpotifyExample\Models\Track')->orderBy('track_number');
     }
 }
