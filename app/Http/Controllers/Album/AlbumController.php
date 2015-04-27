@@ -58,7 +58,10 @@ class AlbumController extends Controller
      * @param Request $request
      */
     public function getAlbum($id, Request $request) {
-        var_dump($id);
-        die();
+        $data = [
+            'album' => $this->albumService->getAlbumById($id)
+        ];
+
+        return view('album/album', $data);
     }
 }

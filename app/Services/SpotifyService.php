@@ -22,4 +22,11 @@ class SpotifyService {
 
         return $response->json()['albums'];
     }
+
+    public function getAlbum($id) {
+        $client = new Client();
+        $response = $client->get(self::SPOTIFY_API . 'albums/' . $id);
+
+        return $response->json();
+    }
 }
