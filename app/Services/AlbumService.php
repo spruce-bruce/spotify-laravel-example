@@ -4,6 +4,7 @@ namespace SpotifyExample\Services;
 
 use SpotifyExample\Models\Album;
 use SpotifyExample\Models\Image;
+use SpotifyExample\Models\Track;
 
 class AlbumService {
 
@@ -82,6 +83,25 @@ class AlbumService {
     }
 
     private function completeAlbum(Album $album, $spotifyResponse) {
+        $tracks = [];
+        foreach ($spotifyResponse['tracks']['items'] as $item) {
+            $tracks[] = new Track([
+                'id' => $item['id'],
+                'album_id' => $album->id,
+                'name' => $item['name'],
+                'disc_number' => $item['disc_number'],
+                'duration_ms' => $item['duration_ms'],
+                'explicit' => $item['explicit'],
+                'href' => $item['href'],
+                'preview_url' => $item['preview_url'],
+                'track_number' => $item['track_number'],
+                'type' => $item['type'],
+                'uri' => $item['uri'],
+            ]);
+        }
+
+        $album->tracks()->saveMany($tracks);
+
         $album->complete = true;
         $album->popularity = $spotifyResponse['popularity'];
         $album->release_date = $spotifyResponse['release_date'];

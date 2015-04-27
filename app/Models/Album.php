@@ -99,4 +99,14 @@ class Album extends Model {
          */
         return $this->hasMany('SpotifyExample\Models\Image');
     }
+
+    /**
+     * Defining that an album can have many tracks
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tracks()
+    {
+        return $this->hasMany('SpotifyExample\Models\Track');
+    }
 }
