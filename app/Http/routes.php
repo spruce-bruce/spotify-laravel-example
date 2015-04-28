@@ -29,6 +29,6 @@ Route::controllers([
 ]);
 
 
-
-// php artisan make:controller SOMETHING
-// Route::resource('photo', 'SOMETHING');
+// http://laravel.com/docs/5.0/controllers#restful-resource-controllers
+// php artisan make:controller RestAlbum
+// Route::resource('rest-album', 'RestAlbum');
