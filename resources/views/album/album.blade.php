@@ -1,15 +1,25 @@
 @extends('app')
 
 @section('content')
-    <img src="{{ $album->getLargeImageUrl() }}" /> <br />
-    Name : {{ $album->name }} <br />
-    Id : {{ $album->id }} <br />
-    Release Date : {{ $album->release_date }} <br />
-    Popularity : {{ $album->popularity }} <br /><br />
+    <div id="album">
+        <img src="{{ $album->getLargeImageUrl() }}" />
 
-    @foreach ($album->tracks as $track)
-        Track # {{ $track->track_number }} <br />
-        name : {{ $track->name }} <br />
-        <a href="{{ $track->preview_url }}">preview link</a> <br /><br />
-    @endforeach
+        <div class="album-info">
+            <h4>{{ $album->name }}</h4>
+            {{ $album->release_date }}
+
+            <table>
+                <tr>
+                    <th>#</th> <th>name</th>
+                </tr>
+
+                @foreach ($album->tracks as $track)
+                    <tr>
+                        <td>{{ $track->track_number }}</td>
+                        <td><a href="{{ $track->preview_url }}">{{ $track->name }}</a></td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+    </div>
 @endsection

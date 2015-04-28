@@ -6234,19 +6234,28 @@ label,
 #content {
   padding: 2rem;
 }
-.album {
+.album-search-result {
   padding-top: 2rem;
   float: left;
   width: 30%;
   height: 350px;
 }
-.album .img-wrapper {
+.album-search-result .img-wrapper {
   display: block;
   width: 300px;
   height: 300px;
 }
-.album .album-info {
+.album-search-result .album-info {
   padding-left: 2rem;
+}
+#album img {
+  float: left;
+  display: block;
+  margin-right: 2rem;
+}
+#album .album-info {
+  float: left;
+  width: 40%;
 }
 .clear {
   clear: both;

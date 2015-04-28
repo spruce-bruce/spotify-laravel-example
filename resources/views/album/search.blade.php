@@ -9,7 +9,7 @@
     </form>
 
     @foreach ($albums as $album)
-        <div class="album">
+        <div class="album-search-result">
             <a class="img-wrapper" href="/album/{{ $album->id }}">
                 <img src="{{ $album->getMediumImageUrl() }}" />
             </a>
