@@ -30,5 +30,5 @@ Route::controllers([
 
 
 
-// php artisan make:controller PhotoController
-// Route::resource('photo', 'PhotoController');
+// php artisan make:controller SOMETHING
+// Route::resource('photo', 'SOMETHING');
