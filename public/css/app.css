@@ -6231,3 +6231,25 @@ label,
 .checkbox label {
   font-weight: 300;
 }
+#content {
+  padding: 2rem;
+}
+.album {
+  padding-top: 2rem;
+  float: left;
+  width: 30%;
+  height: 350px;
+}
+.album .img-wrapper {
+  display: block;
+  width: 300px;
+  height: 300px;
+}
+.album .album-info {
+  padding-left: 2rem;
+}
+.clear {
+  clear: both;
+}
+
+/*# sourceMappingURL=app.css.map */

@@ -8,16 +8,18 @@
         <button>Search</button>
     </form>
 
-
     @foreach ($albums as $album)
         <div class="album">
-
-            <a href="/album/{{ $album->id }}">
+            <a class="img-wrapper" href="/album/{{ $album->id }}">
                 <img src="{{ $album->getMediumImageUrl() }}" />
-            </a> <br />
-            Name : <a href="/album/{{ $album->id }}">{{ $album->name }}</a> <br />
+            </a>
+
+            <div class="album-info">
+                Name : <a href="/album/{{ $album->id }}">{{ $album->name }}</a>
+            </div>
+
+            <div class="clear"></div>
         </div>
-        <br />
     @endforeach
 
 @endsection
