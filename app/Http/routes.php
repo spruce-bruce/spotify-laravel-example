@@ -18,7 +18,17 @@ Route::get('home', 'HomeController@index');
 Route::match(['GET', 'POST'], 'search', 'Album\AlbumController@search');
 Route::get('album/{id}', 'Album\AlbumController@getAlbum');
 
+/*
+ * controllers() allows you to implicitly define routes for your controllers
+ *   - getIndex()
+ *   - postSomething()
+ */
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+
+
+// php artisan make:controller PhotoController
+// Route::resource('photo', 'PhotoController');
