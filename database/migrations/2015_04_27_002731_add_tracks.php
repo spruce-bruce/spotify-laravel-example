@@ -25,7 +25,7 @@ class AddTracks extends Migration {
             $table->integer('track_number');
             $table->string('type', 20);
             $table->string('uri', 100);
-            $table->timestamps();
+            $table->nullableTimestamps();
 
             $table->primary('id');
             $table->foreign('album_id')->references('id')->on('albums');

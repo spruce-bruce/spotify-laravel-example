@@ -19,7 +19,7 @@ class ImagesTable extends Migration {
             $table->string('url', 128);
             $table->integer('width')->unsigned();
             $table->integer('height')->unsigned();
-			$table->timestamps();
+            $table->nullableTimestamps();
 
             $table->foreign('album_id')->references('id')->on('albums');
 		});
