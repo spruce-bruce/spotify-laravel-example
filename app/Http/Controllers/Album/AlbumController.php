@@ -31,11 +31,7 @@ class AlbumController extends Controller
         $this->albumService = $albumService;
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\View\View
-     */
-    public function search(Request $request) {
+    private function getSearchData(Request $request) {
         $query = $request->input('query');
         $albums = [];
 
@@ -48,7 +44,36 @@ class AlbumController extends Controller
             'albums' => $albums
         ];
 
-        return view('album/search', $data);
+        return $data;
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function search(Request $request) {
+        return view('album/search', $this->getSearchData($request));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function restSearch(Request $request) {
+        $response = $this->getSearchData($request);
+        foreach($response['albums'] as $album) {
+            $album->load('images');
+        }
+
+        return $response;
+    }
+
+    private function getAlbumData($id, Request $request) {
+        $data = [
+            'album' => $this->albumService->getAlbumById($id)
+        ];
+
+        return $data;
     }
 
     /**
@@ -58,10 +83,21 @@ class AlbumController extends Controller
      * @param Request $request
      */
     public function getAlbum($id, Request $request) {
-        $data = [
-            'album' => $this->albumService->getAlbumById($id)
-        ];
-
-        return view('album/album', $data);
+        return view('album/album', $this->getAlbumData($id, $request));
     }
+
+    /**
+     * Display the heck out of an album including its tracks
+     *
+     * @param $id
+     * @param Request $request
+     */
+    public function restGetAlbum($id, Request $request) {
+        $data = $this->getAlbumData($id, $request);
+        $data['album']->load(['images', 'tracks']);
+        return $data;
+    }
+
+
+
 }

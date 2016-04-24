@@ -18,6 +18,9 @@ Route::get('home', 'HomeController@index');
 Route::match(['GET', 'POST'], 'search', 'Album\AlbumController@search');
 Route::get('album/{id}', 'Album\AlbumController@getAlbum');
 
+Route::match(['GET'], 'api/search', ['middleware' => 'cors', 'uses' => 'Album\AlbumController@restSearch']);
+Route::get('api/album/{id}', ['middleware' => 'cors', 'uses' => 'Album\AlbumController@restGetAlbum']);
+
 /*
  * controllers() allows you to implicitly define routes for your controllers
  *   - getIndex()

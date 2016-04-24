@@ -26,7 +26,8 @@ class Kernel extends HttpKernel {
 	protected $routeMiddleware = [
 		'auth' => 'SpotifyExample\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-		'guest' => 'SpotifyExample\Http\Middleware\RedirectIfAuthenticated',
+        'guest' => 'SpotifyExample\Http\Middleware\RedirectIfAuthenticated',
+        'cors' => 'SpotifyExample\Http\Middleware\Cors'
 	];
 
 }
